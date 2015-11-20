@@ -1,0 +1,12 @@
+#!/bin/bash
+cd run
+for FILE in *.txt; do
+    gnuplot <<__EOF
+        set xlabel "Time"
+        set ylabel "Concentration"
+        set term png
+        set output "${FILE}.png"
+        set title "${FILE}"
+        plot "${FILE}" using 1:2 with lines title "A" , "${FILE}" using 1:3 with lines title "B", "${FILE}" using 1:4 with lines title "C" 
+__EOF
+done
